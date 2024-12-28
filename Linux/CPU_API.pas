@@ -48,6 +48,7 @@ begin
   finally
     Output.Free;
   end;
+  Result := 'Unknown'; // Если имя процессора не найдено
 end;
 
 { Функция получения производителя процессора
@@ -71,6 +72,7 @@ begin
   finally
     Output.Free;
   end;
+  Result := 'Unknown'; // Если производитель не найден
 end;
 
 { Функция получения частоты процессора
@@ -94,6 +96,7 @@ begin
   finally
     Output.Free;
   end;
+  Result := 'Unknown'; // Если частота не найдена
 end;
 
 { Функция получения максимальной частоты процессора
@@ -111,7 +114,6 @@ begin
     begin
       if Pos('cpu MHz', Output[i]) > 0 then
       begin
-        // Макс. частота может быть определена на основе текущей частоты в процентах или других данных
         Result := Trim(Copy(Output[i], Pos(':', Output[i]) + 2, Length(Output[i]))) + ' MHz';
         Exit;
       end;
@@ -126,12 +128,10 @@ end;
 function GetCPUArchitecture: string;
 var
   Output: TStringList;
-  Command: string;
 begin
-  Command := 'uname -m';
   Output := TStringList.Create;
   try
-    Output.Text := Trim(SysUtils.ExecuteProcess('/bin/sh', ['-c', Command], Output));
+    Output.Text := Trim(SysUtils.ExecuteProcess('/bin/sh', ['-c', 'uname -m'], Output));
     Result := Output.Text;
   finally
     Output.Free;
