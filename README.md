@@ -1,10 +1,11 @@
 # Planned or already Implemented:
+🟡 - in development
 
 | SystemAPI                          | Implemented        | Supported Platforms             |
 | ---------------------------------- | ------------------ | ------------------------------- |
 | CPU Information                    | :white_check_mark:       | Windows, MacOS, Linux |
 | GPU Information                    | :white_check_mark:       | Windows, MacOS, Linux |
-| Battery Status                     | :red_circle:       | Windows, MacOS, Linux (Planned) |
+| Battery Status                     | :yellow_circle:       | Windows, MacOS, Linux (Planned) |
 | RAM Usage                          | :red_circle:       | Windows, MacOS, Linux (Planned) |
 | Disk Storage Information           | :red_circle:       | Windows, MacOS, Linux (Planned) |
 | Network Status                     | :red_circle:       | Windows, MacOS, Linux (Planned) |
