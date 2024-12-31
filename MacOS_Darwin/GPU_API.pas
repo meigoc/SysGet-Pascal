@@ -13,22 +13,29 @@ function GetGPUVendor: string;
 implementation
 
 uses
-  SysUtils, Process;
+  SysUtils, Classes, Process;
 
 { Функция получения имени видеокарты
 (GPU Name Retrieval Function) }
 function GetGPUName: string;
 var
   Output: TStringList;
-  Command: string;
+  Command: TProcess;
 begin
-  Command := 'system_profiler SPDisplaysDataType | grep "Chipset Model"';
   Output := TStringList.Create;
+  Command := TProcess.Create(nil);
   try
-    Output.Text := Trim(SysUtils.ExecuteProcess('/bin/sh', ['-c', Command], Output));
-    Result := Output.Text;
+    Command.CommandLine := 'system_profiler SPDisplaysDataType | grep "Chipset Model"';
+    Command.Options := [poWaitOnExit, poUsePipes];
+    Command.Execute;
+    Output.LoadFromStream(Command.Output);
+    if Command.ExitStatus = 0 then
+      Result := Trim(Output.Text)
+    else
+      Result := 'Failed to retrieve GPU name';
   finally
     Output.Free;
+    Command.Free;
   end;
 end;
 
@@ -37,15 +44,22 @@ end;
 function GetGPUVendor: string;
 var
   Output: TStringList;
-  Command: string;
+  Command: TProcess;
 begin
-  Command := 'system_profiler SPDisplaysDataType | grep "Vendor"';
   Output := TStringList.Create;
+  Command := TProcess.Create(nil);
   try
-    Output.Text := Trim(SysUtils.ExecuteProcess('/bin/sh', ['-c', Command], Output));
-    Result := Output.Text;
+    Command.CommandLine := 'system_profiler SPDisplaysDataType | grep "Vendor"';
+    Command.Options := [poWaitOnExit, poUsePipes];
+    Command.Execute;
+    Output.LoadFromStream(Command.Output);
+    if Command.ExitStatus = 0 then
+      Result := Trim(Output.Text)
+    else
+      Result := 'Failed to retrieve GPU vendor';
   finally
     Output.Free;
+    Command.Free;
   end;
 end;
 
