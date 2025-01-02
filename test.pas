@@ -1,13 +1,13 @@
 program Test;
 
 {$IFDEF MSWINDOWS}
-uses Windows.CPU_API, Windows.GPU_API, Windows.Battery_API, Windows.Monitor_API;
+uses Windows.CPU_API, Windows.GPU_API, Windows.Battery_API, Windows.Monitor_API, Windows.Sensor_API;
 {$ENDIF}
 {$IFDEF LINUX}
-uses Linux.CPU_API, Linux.GPU_API, Linux.Monitor_API;
+uses Linux.CPU_API, Linux.GPU_API, Linux.Monitor_API, Linux.Sensor_API;
 {$ENDIF}
 {$IFDEF DARWIN}
-uses MacOS_Darwin.CPU_API, MacOS_Darwin.GPU_API, MacOS_Darwin.Monitor_API;
+uses MacOS_Darwin.CPU_API, MacOS_Darwin.GPU_API, MacOS_Darwin.Monitor_API, MacOS_Darwin.Sensor_API;
 {$ENDIF}
 
 begin
@@ -22,6 +22,9 @@ begin
 
   writeln('Monitor Name: ', GetMonitorName);
   writeln('Monitor Resolution: ', GetMonitorResolution);
+
+  writeln('Fan Speed: ', GetFanSpeed);
+  writeln('Temperature: ', GetTemperature:0:2);
 
   {$IFDEF MSWINDOWS}
   if IsBatteryPresent then
