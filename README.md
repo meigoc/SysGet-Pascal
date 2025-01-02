@@ -12,10 +12,10 @@
 | USB Connected Devices Support      | :red_circle:       | Windows, MacOS, Linux (Planned) |
 | Operating System Details           | :red_circle:       | Windows, MacOS, Linux (Planned) |
 | System Uptime                      | :red_circle:       | Windows, MacOS, Linux (Planned) |
-| Fan Speed and Temperature Sensors  | ✅                | Windows, MacOS, Linux  |
+| Fan Speed and Temperature Sensors  | :white_check_mark:                 | Windows, MacOS, Linux  |
 | Virtualization Support             | :red_circle:       | Windows, MacOS, Linux (Planned) |
-| Monitor Information                | :red_circle:       | Windows, MacOS, Linux (Planned) |
-| Sound Card Status                  | :red_circle:       | Windows, MacOS, Linux (Planned) |
+| Monitor Information                | :white_check_mark:        | Windows, MacOS, Linux (Planned) |
+| Sound Card                         | :yellow_circle:       | Windows, MacOS, Linux (Planned) |
 | Peripheral Device Status           | :red_circle:       | Windows, MacOS, Linux (Planned) |
 
 # Example:
